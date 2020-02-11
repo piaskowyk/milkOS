@@ -1,6 +1,8 @@
 #include <stdint.h>
+
 #ifndef ATAG_H
 #define ATAG_H
+
 typedef enum {
     NONE = 0x00000000,
     CORE = 0x54410001,
