@@ -13,8 +13,9 @@ void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
 
     uart_init();
     puts("MLEKO!\n");
+
     while (1) {
-        gets(buf,256);
+        gets(buf, 256);
         puts(buf);
         putc('\n');
     }

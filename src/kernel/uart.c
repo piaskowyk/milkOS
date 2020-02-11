@@ -3,26 +3,20 @@
 #include <kernel/uart.h>
 #include <common/stdlib.h>
 
-// Memory-Mapped I/O output
-void mmio_write(uint32_t reg, uint32_t data)
-{
+void mmio_write(uint32_t reg, uint32_t data) {
     *(volatile uint32_t*)reg = data;
 }
 
-// Memory-Mapped I/O input
-uint32_t mmio_read(uint32_t reg)
-{
+uint32_t mmio_read(uint32_t reg) {
     return *(volatile uint32_t*)reg;
 }
 
-void delay(int32_t count)
-{
+void delay(int32_t count) {
     asm volatile("__delay_%=: subs %[count], %[count], #1; bne __delay_%=\n"
             : "=r"(count): [count]"0"(count) : "cc");
 }
 
-void uart_init()
-{
+void uart_init() {
     uart_control_t control;
     // Disable UART0.
     bzero(&control, 4);
@@ -74,8 +68,7 @@ uart_flags_t read_flags(void) {
     return flags;
 }
 
-void uart_putc(unsigned char c)
-{
+void uart_putc(unsigned char c) {
     uart_flags_t flags;
 
     do {
@@ -85,8 +78,7 @@ void uart_putc(unsigned char c)
     mmio_write(UART0_DR, c);
 }
 
-unsigned char uart_getc()
-{
+unsigned char uart_getc() {
     uart_flags_t flags;
     do {
         flags = read_flags();
