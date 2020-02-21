@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "uart.h": "c",
+        "gpu.h": "c",
+        "stdlib.h": "c",
+        "stddef.h": "c"
+    }
+}
